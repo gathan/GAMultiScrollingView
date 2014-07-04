@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAMultiScrollingView.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <GAMultiScrollingViewDelegate, GAMultiScrollingViewDataSource>
 
 @end

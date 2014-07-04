@@ -22,6 +22,7 @@
 		B670219F1966E8E20048F529 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B670217E1966E8E20048F529 /* UIKit.framework */; };
 		B67021A71966E8E20048F529 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B67021A51966E8E20048F529 /* InfoPlist.strings */; };
 		B67021A91966E8E20048F529 /* GAMultiScrollingViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B67021A81966E8E20048F529 /* GAMultiScrollingViewTests.m */; };
+		B67021B81966E9530048F529 /* GAMultiScrollingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B67021B71966E9530048F529 /* GAMultiScrollingView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		B67021A41966E8E20048F529 /* GAMultiScrollingViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GAMultiScrollingViewTests-Info.plist"; sourceTree = "<group>"; };
 		B67021A61966E8E20048F529 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B67021A81966E8E20048F529 /* GAMultiScrollingViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAMultiScrollingViewTests.m; sourceTree = "<group>"; };
+		B67021B61966E9530048F529 /* GAMultiScrollingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAMultiScrollingView.h; sourceTree = "<group>"; };
+		B67021B71966E9530048F529 /* GAMultiScrollingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAMultiScrollingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +117,7 @@
 		B67021801966E8E20048F529 /* GAMultiScrollingView */ = {
 			isa = PBXGroup;
 			children = (
+				B67021B21966E8F60048F529 /* GAMultiScrollingView */,
 				B67021891966E8E20048F529 /* AppDelegate.h */,
 				B670218A1966E8E20048F529 /* AppDelegate.m */,
 				B670218C1966E8E20048F529 /* Main_iPhone.storyboard */,
@@ -153,6 +157,15 @@
 				B67021A51966E8E20048F529 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B67021B21966E8F60048F529 /* GAMultiScrollingView */ = {
+			isa = PBXGroup;
+			children = (
+				B67021B61966E9530048F529 /* GAMultiScrollingView.h */,
+				B67021B71966E9530048F529 /* GAMultiScrollingView.m */,
+			);
+			path = GAMultiScrollingView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B67021B81966E9530048F529 /* GAMultiScrollingView.m in Sources */,
 				B67021941966E8E20048F529 /* ViewController.m in Sources */,
 				B670218B1966E8E20048F529 /* AppDelegate.m in Sources */,
 				B67021871966E8E20048F529 /* main.m in Sources */,

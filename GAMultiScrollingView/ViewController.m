@@ -8,7 +8,10 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController (){
+
+    __weak IBOutlet GAMultiScrollingView *multiScrollingView;
+}
 
 @end
 
@@ -25,5 +28,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - GAMultiScrollingViewDataSource
+
+#pragma mark - GAMultiScrollingViewDelegate
 
 @end
