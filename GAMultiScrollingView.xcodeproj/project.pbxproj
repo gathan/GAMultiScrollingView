@@ -23,6 +23,7 @@
 		B67021A71966E8E20048F529 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B67021A51966E8E20048F529 /* InfoPlist.strings */; };
 		B67021A91966E8E20048F529 /* GAMultiScrollingViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B67021A81966E8E20048F529 /* GAMultiScrollingViewTests.m */; };
 		B67021B81966E9530048F529 /* GAMultiScrollingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B67021B71966E9530048F529 /* GAMultiScrollingView.m */; };
+		B67021BB1966F0BC0048F529 /* GAMultiScrollingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B67021BA1966F0BC0048F529 /* GAMultiScrollingCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		B67021A81966E8E20048F529 /* GAMultiScrollingViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GAMultiScrollingViewTests.m; sourceTree = "<group>"; };
 		B67021B61966E9530048F529 /* GAMultiScrollingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAMultiScrollingView.h; sourceTree = "<group>"; };
 		B67021B71966E9530048F529 /* GAMultiScrollingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAMultiScrollingView.m; sourceTree = "<group>"; };
+		B67021B91966F0BC0048F529 /* GAMultiScrollingCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAMultiScrollingCollectionViewCell.h; sourceTree = "<group>"; };
+		B67021BA1966F0BC0048F529 /* GAMultiScrollingCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAMultiScrollingCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,8 @@
 			children = (
 				B67021B61966E9530048F529 /* GAMultiScrollingView.h */,
 				B67021B71966E9530048F529 /* GAMultiScrollingView.m */,
+				B67021B91966F0BC0048F529 /* GAMultiScrollingCollectionViewCell.h */,
+				B67021BA1966F0BC0048F529 /* GAMultiScrollingCollectionViewCell.m */,
 			);
 			path = GAMultiScrollingView;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 				B67021B81966E9530048F529 /* GAMultiScrollingView.m in Sources */,
 				B67021941966E8E20048F529 /* ViewController.m in Sources */,
 				B670218B1966E8E20048F529 /* AppDelegate.m in Sources */,
+				B67021BB1966F0BC0048F529 /* GAMultiScrollingCollectionViewCell.m in Sources */,
 				B67021871966E8E20048F529 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

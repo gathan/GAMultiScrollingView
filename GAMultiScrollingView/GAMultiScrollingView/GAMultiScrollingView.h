@@ -12,8 +12,13 @@
 
 @protocol GAMultiScrollingViewDelegate<NSObject, UIScrollViewDelegate>
 
+@required
+- (CGFloat)widthForItemInMultiScrollingView:(GAMultiScrollingView*)multiScrollingView;
+
 @optional
-- (CGFloat)multiScrollingView:(GAMultiScrollingView*)multiScrollingView heightForSection:(NSInteger)section;
+- (CGFloat)widthSpacingInsetInMultiScrollingView:(GAMultiScrollingView*)multiScrollingView;
+- (UIView*)multiScrollingView:(GAMultiScrollingView*)multiScrollingView viewForItemAtIndex:(NSInteger)index;
+
 @end
 
 @protocol GAMultiScrollingViewDataSource<NSObject>
@@ -25,9 +30,9 @@
 @end
 
 
-@interface GAMultiScrollingView : UIView
+@interface GAMultiScrollingView : UIView <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
-@property(nonatomic, strong)   id <GAMultiScrollingViewDataSource> multiScrollingViewSource;
+@property(nonatomic, strong)   id <GAMultiScrollingViewDataSource> multiScrollingViewDataSource;
 @property(nonatomic, strong)   id <GAMultiScrollingViewDelegate>   multiScrollingViewDelegate;
 
 - (void)clearData;
