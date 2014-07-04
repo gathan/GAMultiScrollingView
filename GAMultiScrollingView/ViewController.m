@@ -25,6 +25,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundImage.png"]];
     multiScrollingView.multiScrollingViewDataSource = self;
     multiScrollingView.multiScrollingViewDelegate = self;
     [multiScrollingView reloadData];
