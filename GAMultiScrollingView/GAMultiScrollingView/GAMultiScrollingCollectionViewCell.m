@@ -15,6 +15,8 @@
 
     ScrollViewWithScrollingDirection *containerScrollView;
     BOOL hasCalledHideToTop;
+    CGRect firstAppearingBottomCustomViewStartingRect;
+    CGRect secondAppearingBottomCustomViewStartingRect;
 }
 
 @end
@@ -56,10 +58,58 @@
     [self displayItemAtDefaultPoint];
 }
 
+- (void)setFirstAppearingBottomCustomView:(UIView *)firstAppearingBottomCustomView{
+    [self.firstAppearingBottomCustomView removeFromSuperview];
+    CGFloat topOffset = 0;
+    _firstAppearingBottomCustomView = firstAppearingBottomCustomView;
+    firstAppearingBottomCustomView.frame = CGRectMake(0, 0, firstAppearingBottomCustomView.frame.size.width, firstAppearingBottomCustomView.frame.size.height);
+    firstAppearingBottomCustomView.center = CGPointMake(self.customView.center.x, self.customView.frame.origin.y+firstAppearingBottomCustomView.frame.size.height/2 + topOffset);
+    firstAppearingBottomCustomViewStartingRect = firstAppearingBottomCustomView.frame;
+    [containerScrollView insertSubview:firstAppearingBottomCustomView atIndex:0];
+}
+
+- (void)setSecondAppearingBottomCustomView:(UIView *)secondAppearingBottomCustomView{
+    [self.secondAppearingBottomCustomView removeFromSuperview];
+    CGFloat topOffset = 0;
+    _secondAppearingBottomCustomView = secondAppearingBottomCustomView;
+    secondAppearingBottomCustomView.frame = CGRectMake(0, 0, secondAppearingBottomCustomView.frame.size.width, secondAppearingBottomCustomView.frame.size.height);
+    secondAppearingBottomCustomView.center = CGPointMake(self.customView.center.x, self.customView.frame.origin.y+secondAppearingBottomCustomView.frame.size.height/2 + topOffset);
+    secondAppearingBottomCustomViewStartingRect = secondAppearingBottomCustomView.frame;
+    [containerScrollView insertSubview:secondAppearingBottomCustomView aboveSubview:self.firstAppearingBottomCustomView];
+}
+
 #pragma mark - UIScrollViewDelegate
+
+- (void)manageAppearingViews{
+    CGFloat bottomOffset = containerScrollView.contentOffset.y;
+    if (bottomOffset>=0) {
+        self.firstAppearingBottomCustomView.frame = firstAppearingBottomCustomViewStartingRect;
+        self.secondAppearingBottomCustomView.frame = secondAppearingBottomCustomViewStartingRect;
+    }else{
+        bottomOffset = bottomOffset * (-1);
+        if (bottomOffset <= self.firstAppearingBottomCustomView.bounds.size.height) {
+            [self setFrameToFirstForBottomOffset:bottomOffset];
+        }else if (bottomOffset <= self.firstAppearingBottomCustomView.bounds.size.height + self.secondAppearingBottomCustomView.bounds.size.height){
+            [self setFrameToFirstForBottomOffset:bottomOffset];
+            [self setFrameToSecondForBottomOffset:bottomOffset];
+        }
+    }
+}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [containerScrollView directionScrollViewDidScroll:containerScrollView];
+    [self manageAppearingViews];
+}
+
+- (void)setFrameToFirstForBottomOffset:(CGFloat)bottomOffset{
+    if (bottomOffset > self.firstAppearingBottomCustomView.bounds.size.height) {
+        bottomOffset = self.firstAppearingBottomCustomView.bounds.size.height;
+    }
+    self.firstAppearingBottomCustomView.frame = CGRectMake(self.firstAppearingBottomCustomView.frame.origin.x, firstAppearingBottomCustomViewStartingRect.origin.y-bottomOffset, self.firstAppearingBottomCustomView.frame.size.width, self.firstAppearingBottomCustomView.frame.size.height);
+}
+
+- (void)setFrameToSecondForBottomOffset:(CGFloat)bottomOffset{
+    self.secondAppearingBottomCustomView.frame = CGRectMake(self.secondAppearingBottomCustomView.frame.origin.x, secondAppearingBottomCustomViewStartingRect.origin.y + self.firstAppearingBottomCustomView.bounds.size.height - bottomOffset, self.secondAppearingBottomCustomView.frame.size.width, self.secondAppearingBottomCustomView.frame.size.height);
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
@@ -76,10 +126,13 @@
     }else if (!decelerate){
         [self displayItemAtDefaultPoint];
     }else{
-    
-    
+        NSLog(@"content Offset start");
+        [CGGeometryHelper printPoint:containerScrollView.contentOffset];
+        NSLog(@"content Offset end");
     
     }
+    
+    [self manageAppearingViews];
 }
 
 - (void)wentToBottom{

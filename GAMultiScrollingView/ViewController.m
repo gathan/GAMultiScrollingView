@@ -21,11 +21,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self renew];
+}
+
+- (void)renew{
+    [self renewAndReload:NO];
+}
+
+- (void)renewReload{
+    [self renewAndReload:YES];
+}
+
+- (void)renewAndReload:(BOOL)reload{
     itemsMutableArray = [[NSMutableArray alloc]init];
     for (NSUInteger x = 0 ; x < 10 ; x++) {
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%d.png", x%3]];
         UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
         [itemsMutableArray addObject:imageView];
+    }
+    
+    if (reload) {
+        [multiScrollingView reloadData];
     }
 }
 
@@ -67,9 +83,35 @@
 - (BOOL)multiScrollingView:(GAMultiScrollingView *)multiScrollingView shouldDeleteItemAtIndex:(NSInteger)index{
     if (index == 0 || index == 1) {
         [itemsMutableArray removeObjectAtIndex:index];
+        if (itemsMutableArray.count == 0) {
+            [self performSelector:@selector(renewReload) withObject:nil afterDelay:0.5];
+        }
         return YES;
     }
     return NO;
+}
+
+- (UIView*)multiScrollingView:(GAMultiScrollingView *)multiScrollingView firstAppearingBottomCustomViewForItemAtIndex:(NSInteger)index{
+    UIView *firstAppearingBottomCustomViewForItemAtIndex = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 160, 40)];
+    firstAppearingBottomCustomViewForItemAtIndex.backgroundColor = [UIColor colorWithRed:84/255.0f green:113/255.0f blue:89/255.0f alpha:1];
+    CGFloat imageViewWidth = 40;
+    CGFloat imageViewHeight = 40;
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(firstAppearingBottomCustomViewForItemAtIndex.bounds.size.width/2 - imageViewWidth/2 , firstAppearingBottomCustomViewForItemAtIndex.bounds.size.height/2 - imageViewHeight/2, imageViewWidth, imageViewHeight)];
+    imageView.image = [UIImage imageNamed:@"refreshIcon"];
+    [firstAppearingBottomCustomViewForItemAtIndex addSubview:imageView];
+    return firstAppearingBottomCustomViewForItemAtIndex;
+}
+
+
+- (UIView*)multiScrollingView:(GAMultiScrollingView *)multiScrollingView secondAppearingBottomCustomViewForItemAtIndex:(NSInteger)index{
+    UIView *secondAppearingBottomCustomViewForItemAtIndex = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 160, 40)];
+    secondAppearingBottomCustomViewForItemAtIndex.backgroundColor = [UIColor colorWithRed:203/255.0f green:72/255.0f blue:56/255.0f alpha:1];
+    CGFloat imageViewWidth = 40;
+    CGFloat imageViewHeight = 40;
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(secondAppearingBottomCustomViewForItemAtIndex.bounds.size.width/2 - imageViewWidth/2 , secondAppearingBottomCustomViewForItemAtIndex.bounds.size.height/2 - imageViewHeight/2, imageViewWidth, imageViewHeight)];
+    imageView.image = [UIImage imageNamed:@"archiveIcon"];
+    [secondAppearingBottomCustomViewForItemAtIndex addSubview:imageView];
+    return secondAppearingBottomCustomViewForItemAtIndex;
 }
 
 @end

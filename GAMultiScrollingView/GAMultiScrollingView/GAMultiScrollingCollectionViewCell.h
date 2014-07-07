@@ -23,5 +23,7 @@
 
 @property(nonatomic, strong) id <GAMultiScrollingCollectionViewCellDelegate> multiScrollingCollectionViewCellDelegate;
 @property (nonatomic, strong) UIView *customView;
+@property (nonatomic, strong) UIView *firstAppearingBottomCustomView;
+@property (nonatomic, strong) UIView *secondAppearingBottomCustomView;
 
 @end

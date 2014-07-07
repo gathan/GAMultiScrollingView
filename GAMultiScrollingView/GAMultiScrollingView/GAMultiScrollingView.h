@@ -19,6 +19,8 @@
 @optional
 - (CGFloat)widthSpacingInsetInMultiScrollingView:(GAMultiScrollingView*)multiScrollingView;
 - (UIView*)multiScrollingView:(GAMultiScrollingView*)multiScrollingView viewForItemAtIndex:(NSInteger)index;
+- (UIView*)multiScrollingView:(GAMultiScrollingView*)multiScrollingView firstAppearingBottomCustomViewForItemAtIndex:(NSInteger)index;
+- (UIView*)multiScrollingView:(GAMultiScrollingView*)multiScrollingView secondAppearingBottomCustomViewForItemAtIndex:(NSInteger)index;
 - (BOOL)multiScrollingView:(GAMultiScrollingView*)multiScrollingView shouldDeleteItemAtIndex:(NSInteger)index;
 
 @end

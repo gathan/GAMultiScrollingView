@@ -82,6 +82,19 @@
     }
     multiScrollingCollectionViewCell.multiScrollingCollectionViewCellDelegate = self;
     
+    if (self.multiScrollingViewDelegate && [self.multiScrollingViewDelegate respondsToSelector:@selector(multiScrollingView:firstAppearingBottomCustomViewForItemAtIndex:)]) {
+        UIView *firstAppearingBottomCustomView = [self.multiScrollingViewDelegate multiScrollingView:self firstAppearingBottomCustomViewForItemAtIndex:indexPath.row];
+        if (firstAppearingBottomCustomView) {
+            multiScrollingCollectionViewCell.firstAppearingBottomCustomView = firstAppearingBottomCustomView;
+            if (self.multiScrollingViewDelegate && [self.multiScrollingViewDelegate respondsToSelector:@selector(multiScrollingView:secondAppearingBottomCustomViewForItemAtIndex:)]) {
+                UIView *secondAppearingBottomCustomView = [self.multiScrollingViewDelegate multiScrollingView:self secondAppearingBottomCustomViewForItemAtIndex:indexPath.row];
+                if (secondAppearingBottomCustomView) {
+                    multiScrollingCollectionViewCell.secondAppearingBottomCustomView = secondAppearingBottomCustomView;
+                }
+            }
+        }
+    }
+    
     return multiScrollingCollectionViewCell;
 }
 
