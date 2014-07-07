@@ -82,17 +82,13 @@
 
 - (void)manageAppearingViews{
     CGFloat bottomOffset = containerScrollView.contentOffset.y;
-    if (bottomOffset>=0) {
+    if (bottomOffset>0) {
         self.firstAppearingBottomCustomView.frame = firstAppearingBottomCustomViewStartingRect;
         self.secondAppearingBottomCustomView.frame = secondAppearingBottomCustomViewStartingRect;
     }else{
         bottomOffset = bottomOffset * (-1);
-        if (bottomOffset <= self.firstAppearingBottomCustomView.bounds.size.height) {
-            [self setFrameToFirstForBottomOffset:bottomOffset];
-        }else if (bottomOffset <= self.firstAppearingBottomCustomView.bounds.size.height + self.secondAppearingBottomCustomView.bounds.size.height){
-            [self setFrameToFirstForBottomOffset:bottomOffset];
-            [self setFrameToSecondForBottomOffset:bottomOffset];
-        }
+        [self setFrameToFirstForBottomOffset:bottomOffset];
+        [self setFrameToSecondForBottomOffset:bottomOffset];
     }
 }
 
@@ -102,14 +98,33 @@
 }
 
 - (void)setFrameToFirstForBottomOffset:(CGFloat)bottomOffset{
-    if (bottomOffset > self.firstAppearingBottomCustomView.bounds.size.height) {
+    if (bottomOffset >= self.firstAppearingBottomCustomView.bounds.size.height) {
         bottomOffset = self.firstAppearingBottomCustomView.bounds.size.height;
+        self.firstAppearingBottomCustomView.frame = CGRectMake(self.firstAppearingBottomCustomView.frame.origin.x, firstAppearingBottomCustomViewStartingRect.origin.y - self.firstAppearingBottomCustomView.bounds.size.height, self.firstAppearingBottomCustomView.frame.size.width, self.firstAppearingBottomCustomView.frame.size.height);
+        return;
     }
     self.firstAppearingBottomCustomView.frame = CGRectMake(self.firstAppearingBottomCustomView.frame.origin.x, firstAppearingBottomCustomViewStartingRect.origin.y-bottomOffset, self.firstAppearingBottomCustomView.frame.size.width, self.firstAppearingBottomCustomView.frame.size.height);
 }
 
 - (void)setFrameToSecondForBottomOffset:(CGFloat)bottomOffset{
+    if (bottomOffset >= self.firstAppearingBottomCustomView.bounds.size.height + self.secondAppearingBottomCustomView.bounds.size.height) {
+    self.secondAppearingBottomCustomView.frame = CGRectMake(self.secondAppearingBottomCustomView.frame.origin.x, secondAppearingBottomCustomViewStartingRect.origin.y - self.firstAppearingBottomCustomView.bounds.size.height, self.secondAppearingBottomCustomView.frame.size.width, self.secondAppearingBottomCustomView.frame.size.height);
+        return;
+    }
+    
     self.secondAppearingBottomCustomView.frame = CGRectMake(self.secondAppearingBottomCustomView.frame.origin.x, secondAppearingBottomCustomViewStartingRect.origin.y + self.firstAppearingBottomCustomView.bounds.size.height - bottomOffset, self.secondAppearingBottomCustomView.frame.size.width, self.secondAppearingBottomCustomView.frame.size.height);
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [self manageAppearingViews];
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+    [self manageAppearingViews];
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    [self manageAppearingViews];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
@@ -126,10 +141,11 @@
     }else if (!decelerate){
         [self displayItemAtDefaultPoint];
     }else{
+        /*
         NSLog(@"content Offset start");
         [CGGeometryHelper printPoint:containerScrollView.contentOffset];
         NSLog(@"content Offset end");
-    
+         */
     }
     
     [self manageAppearingViews];

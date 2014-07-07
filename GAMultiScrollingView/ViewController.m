@@ -35,7 +35,7 @@
 - (void)renewAndReload:(BOOL)reload{
     itemsMutableArray = [[NSMutableArray alloc]init];
     for (NSUInteger x = 0 ; x < 10 ; x++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%d.png", x%3]];
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%d.png", x%2]];
         UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
         [itemsMutableArray addObject:imageView];
     }
