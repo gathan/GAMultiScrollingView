@@ -83,6 +83,11 @@
     multiScrollingCollectionViewCell.multiScrollingCollectionViewCellDelegate = self;
     
     if (self.multiScrollingViewDelegate && [self.multiScrollingViewDelegate respondsToSelector:@selector(multiScrollingView:firstAppearingBottomCustomViewForItemAtIndex:)]) {
+        if (self.multiScrollingViewDelegate && [self.multiScrollingViewDelegate respondsToSelector:@selector(multiScrollingView:topInsetForAppearingBottomCustomViewsForItemAtIndex:)]) {
+            CGFloat topInset = [self.multiScrollingViewDelegate multiScrollingView:self topInsetForAppearingBottomCustomViewsForItemAtIndex:indexPath.row];
+            multiScrollingCollectionViewCell.topInsetForAppearingBottomCustomViews = topInset;
+        }
+        
         UIView *firstAppearingBottomCustomView = [self.multiScrollingViewDelegate multiScrollingView:self firstAppearingBottomCustomViewForItemAtIndex:indexPath.row];
         if (firstAppearingBottomCustomView) {
             multiScrollingCollectionViewCell.firstAppearingBottomCustomView = firstAppearingBottomCustomView;

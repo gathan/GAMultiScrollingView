@@ -60,20 +60,18 @@
 
 - (void)setFirstAppearingBottomCustomView:(UIView *)firstAppearingBottomCustomView{
     [self.firstAppearingBottomCustomView removeFromSuperview];
-    CGFloat topOffset = 0;
     _firstAppearingBottomCustomView = firstAppearingBottomCustomView;
     firstAppearingBottomCustomView.frame = CGRectMake(0, 0, firstAppearingBottomCustomView.frame.size.width, firstAppearingBottomCustomView.frame.size.height);
-    firstAppearingBottomCustomView.center = CGPointMake(self.customView.center.x, self.customView.frame.origin.y+firstAppearingBottomCustomView.frame.size.height/2 + topOffset);
+    firstAppearingBottomCustomView.center = CGPointMake(self.customView.center.x, self.customView.frame.origin.y+firstAppearingBottomCustomView.frame.size.height/2 + self.topInsetForAppearingBottomCustomViews);
     firstAppearingBottomCustomViewStartingRect = firstAppearingBottomCustomView.frame;
     [containerScrollView insertSubview:firstAppearingBottomCustomView atIndex:0];
 }
 
 - (void)setSecondAppearingBottomCustomView:(UIView *)secondAppearingBottomCustomView{
     [self.secondAppearingBottomCustomView removeFromSuperview];
-    CGFloat topOffset = 0;
     _secondAppearingBottomCustomView = secondAppearingBottomCustomView;
     secondAppearingBottomCustomView.frame = CGRectMake(0, 0, secondAppearingBottomCustomView.frame.size.width, secondAppearingBottomCustomView.frame.size.height);
-    secondAppearingBottomCustomView.center = CGPointMake(self.customView.center.x, self.customView.frame.origin.y+secondAppearingBottomCustomView.frame.size.height/2 + topOffset);
+    secondAppearingBottomCustomView.center = CGPointMake(self.customView.center.x, self.customView.frame.origin.y+secondAppearingBottomCustomView.frame.size.height/2 + self.topInsetForAppearingBottomCustomViews);
     secondAppearingBottomCustomViewStartingRect = secondAppearingBottomCustomView.frame;
     [containerScrollView insertSubview:secondAppearingBottomCustomView aboveSubview:self.firstAppearingBottomCustomView];
 }

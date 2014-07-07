@@ -91,8 +91,12 @@
     return NO;
 }
 
+- (CGFloat)multiScrollingView:(GAMultiScrollingView *)multiScrollingView topInsetForAppearingBottomCustomViewsForItemAtIndex:(NSInteger)index{
+    return 3;
+}
+
 - (UIView*)multiScrollingView:(GAMultiScrollingView *)multiScrollingView firstAppearingBottomCustomViewForItemAtIndex:(NSInteger)index{
-    UIView *firstAppearingBottomCustomViewForItemAtIndex = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 160, 40)];
+    UIView *firstAppearingBottomCustomViewForItemAtIndex = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 150, 40)];
     firstAppearingBottomCustomViewForItemAtIndex.backgroundColor = [UIColor colorWithRed:84/255.0f green:113/255.0f blue:89/255.0f alpha:1];
     CGFloat imageViewWidth = 40;
     CGFloat imageViewHeight = 40;
@@ -104,7 +108,7 @@
 
 
 - (UIView*)multiScrollingView:(GAMultiScrollingView *)multiScrollingView secondAppearingBottomCustomViewForItemAtIndex:(NSInteger)index{
-    UIView *secondAppearingBottomCustomViewForItemAtIndex = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 160, 40)];
+    UIView *secondAppearingBottomCustomViewForItemAtIndex = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 150, 40)];
     secondAppearingBottomCustomViewForItemAtIndex.backgroundColor = [UIColor colorWithRed:203/255.0f green:72/255.0f blue:56/255.0f alpha:1];
     CGFloat imageViewWidth = 40;
     CGFloat imageViewHeight = 40;
