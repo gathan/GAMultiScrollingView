@@ -102,6 +102,8 @@
         }
         return YES;
     }
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Example" message:@"For this example you are allowed to delete only items at indexes: 0,1" delegate:nil cancelButtonTitle:@"Thanks!" otherButtonTitles:nil, nil];
+    [alertView show];
     return NO;
 }
 
