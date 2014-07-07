@@ -105,6 +105,7 @@
 }
 
 - (void)setFrameToSecondForBottomOffset:(CGFloat)bottomOffset{
+    bottomOffset = bottomOffset-20;
     if (bottomOffset >= self.firstAppearingBottomCustomView.bounds.size.height + self.secondAppearingBottomCustomView.bounds.size.height) {
     self.secondAppearingBottomCustomView.frame = CGRectMake(self.secondAppearingBottomCustomView.frame.origin.x, secondAppearingBottomCustomViewStartingRect.origin.y - self.firstAppearingBottomCustomView.bounds.size.height, self.secondAppearingBottomCustomView.frame.size.width, self.secondAppearingBottomCustomView.frame.size.height);
         return;
