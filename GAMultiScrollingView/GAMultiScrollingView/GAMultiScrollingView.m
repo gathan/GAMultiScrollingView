@@ -7,9 +7,8 @@
 //
 
 #import "GAMultiScrollingView.h"
-#import "GAMultiScrollingCollectionViewCell.h"
 
-@interface GAMultiScrollingView (){
+@interface GAMultiScrollingView(){
 
     UICollectionView *myCollectionView;
     CGFloat widthForItem;
@@ -81,6 +80,7 @@
         UIView *viewForItemAtIndex = [self.multiScrollingViewDelegate multiScrollingView:self viewForItemAtIndex:indexPath.row];
         [multiScrollingCollectionViewCell setCustomView:viewForItemAtIndex];
     }
+    multiScrollingCollectionViewCell.multiScrollingCollectionViewCellDelegate = self;
     
     return multiScrollingCollectionViewCell;
 }
@@ -95,6 +95,28 @@
 
 - (void)reloadData{
     [myCollectionView reloadData];
+}
+
+#pragma mark - GAMultiScrollingCollectionViewCellDelegate
+
+- (BOOL)shouldDeleteCell:(GAMultiScrollingCollectionViewCell *)cell{
+    NSIndexPath *indexPath = [myCollectionView indexPathForCell:cell];
+    BOOL shouldDelete = NO;
+    if (self.multiScrollingViewDelegate && [self.multiScrollingViewDelegate respondsToSelector:@selector(multiScrollingView:shouldDeleteItemAtIndex:)]) {
+        shouldDelete = [self.multiScrollingViewDelegate multiScrollingView:self shouldDeleteItemAtIndex:indexPath.row];
+    }
+    
+    if (shouldDelete) {
+        [myCollectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+    }else{
+        [cell displayItemAtDefaultPoint];
+    }
+    
+    return shouldDelete;
+}
+
+- (void)didEndMovingItemToBottomOfCell:(GAMultiScrollingCollectionViewCell *)cell{
+
 }
 
 #pragma mark - Custom Protocol Setters

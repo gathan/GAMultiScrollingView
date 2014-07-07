@@ -8,8 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class GAMultiScrollingCollectionViewCell;
+
+@protocol GAMultiScrollingCollectionViewCellDelegate <NSObject>
+
+- (BOOL)shouldDeleteCell:(GAMultiScrollingCollectionViewCell*)cell;
+- (void)didEndMovingItemToBottomOfCell:(GAMultiScrollingCollectionViewCell*)cell;
+
+@end
+
 @interface GAMultiScrollingCollectionViewCell : UICollectionViewCell <UIScrollViewDelegate>
 
+- (void)displayItemAtDefaultPoint;
+
+@property(nonatomic, strong) id <GAMultiScrollingCollectionViewCellDelegate> multiScrollingCollectionViewCellDelegate;
 @property (nonatomic, strong) UIView *customView;
 
 @end

@@ -24,6 +24,9 @@
 		B67021A91966E8E20048F529 /* GAMultiScrollingViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B67021A81966E8E20048F529 /* GAMultiScrollingViewTests.m */; };
 		B67021B81966E9530048F529 /* GAMultiScrollingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B67021B71966E9530048F529 /* GAMultiScrollingView.m */; };
 		B67021BB1966F0BC0048F529 /* GAMultiScrollingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B67021BA1966F0BC0048F529 /* GAMultiScrollingCollectionViewCell.m */; };
+		B6AF8E07196AA37F003728D8 /* UIScrollView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AF8E06196AA37F003728D8 /* UIScrollView+Additions.m */; };
+		B6AF8E0A196ABAC9003728D8 /* CGGeometryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AF8E09196ABAC9003728D8 /* CGGeometryHelper.m */; };
+		B6AF8E0D196ABCFC003728D8 /* ScrollViewWithScrollingDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AF8E0C196ABCFC003728D8 /* ScrollViewWithScrollingDirection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,12 @@
 		B67021B71966E9530048F529 /* GAMultiScrollingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAMultiScrollingView.m; sourceTree = "<group>"; };
 		B67021B91966F0BC0048F529 /* GAMultiScrollingCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAMultiScrollingCollectionViewCell.h; sourceTree = "<group>"; };
 		B67021BA1966F0BC0048F529 /* GAMultiScrollingCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAMultiScrollingCollectionViewCell.m; sourceTree = "<group>"; };
+		B6AF8E05196AA37F003728D8 /* UIScrollView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Additions.h"; sourceTree = "<group>"; };
+		B6AF8E06196AA37F003728D8 /* UIScrollView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Additions.m"; sourceTree = "<group>"; };
+		B6AF8E08196ABAC9003728D8 /* CGGeometryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGGeometryHelper.h; sourceTree = "<group>"; };
+		B6AF8E09196ABAC9003728D8 /* CGGeometryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGGeometryHelper.m; sourceTree = "<group>"; };
+		B6AF8E0B196ABCFC003728D8 /* ScrollViewWithScrollingDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewWithScrollingDirection.h; sourceTree = "<group>"; };
+		B6AF8E0C196ABCFC003728D8 /* ScrollViewWithScrollingDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewWithScrollingDirection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +178,12 @@
 				B67021B71966E9530048F529 /* GAMultiScrollingView.m */,
 				B67021B91966F0BC0048F529 /* GAMultiScrollingCollectionViewCell.h */,
 				B67021BA1966F0BC0048F529 /* GAMultiScrollingCollectionViewCell.m */,
+				B6AF8E05196AA37F003728D8 /* UIScrollView+Additions.h */,
+				B6AF8E06196AA37F003728D8 /* UIScrollView+Additions.m */,
+				B6AF8E0B196ABCFC003728D8 /* ScrollViewWithScrollingDirection.h */,
+				B6AF8E0C196ABCFC003728D8 /* ScrollViewWithScrollingDirection.m */,
+				B6AF8E08196ABAC9003728D8 /* CGGeometryHelper.h */,
+				B6AF8E09196ABAC9003728D8 /* CGGeometryHelper.m */,
 			);
 			path = GAMultiScrollingView;
 			sourceTree = "<group>";
@@ -272,10 +287,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B67021B81966E9530048F529 /* GAMultiScrollingView.m in Sources */,
+				B6AF8E07196AA37F003728D8 /* UIScrollView+Additions.m in Sources */,
 				B67021941966E8E20048F529 /* ViewController.m in Sources */,
 				B670218B1966E8E20048F529 /* AppDelegate.m in Sources */,
 				B67021BB1966F0BC0048F529 /* GAMultiScrollingCollectionViewCell.m in Sources */,
+				B6AF8E0D196ABCFC003728D8 /* ScrollViewWithScrollingDirection.m in Sources */,
 				B67021871966E8E20048F529 /* main.m in Sources */,
+				B6AF8E0A196ABAC9003728D8 /* CGGeometryHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +512,7 @@
 				B67021AE1966E8E20048F529 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B67021AF1966E8E20048F529 /* Build configuration list for PBXNativeTarget "GAMultiScrollingViewTests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +521,7 @@
 				B67021B11966E8E20048F529 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

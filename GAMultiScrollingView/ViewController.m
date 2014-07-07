@@ -11,6 +11,7 @@
 @interface ViewController (){
 
     __weak IBOutlet GAMultiScrollingView *multiScrollingView;
+    NSMutableArray *itemsMutableArray;
 }
 
 @end
@@ -20,7 +21,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    itemsMutableArray = [[NSMutableArray alloc]init];
+    for (NSUInteger x = 0 ; x < 10 ; x++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%d.png", x%3]];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+        [itemsMutableArray addObject:imageView];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -40,7 +46,7 @@
 #pragma mark - GAMultiScrollingViewDataSource
 
 - (NSInteger)numberOfItemsInMultiScrollingView:(GAMultiScrollingView *)multiScrollingView{
-    return 10;
+    return itemsMutableArray.count;
 }
 
 #pragma mark - GAMultiScrollingViewDelegate
@@ -54,9 +60,16 @@
 }
 
 - (UIView*)multiScrollingView:(GAMultiScrollingView *)multiScrollingView viewForItemAtIndex:(NSInteger)index{
-    UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%d.png", index%3]];
-    UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+    UIImageView *imageView = [itemsMutableArray objectAtIndex:index];
     return imageView;
+}
+
+- (BOOL)multiScrollingView:(GAMultiScrollingView *)multiScrollingView shouldDeleteItemAtIndex:(NSInteger)index{
+    if (index == 0 || index == 1) {
+        [itemsMutableArray removeObjectAtIndex:index];
+        return YES;
+    }
+    return NO;
 }
 
 @end

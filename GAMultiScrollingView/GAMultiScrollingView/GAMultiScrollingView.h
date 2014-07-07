@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAMultiScrollingCollectionViewCell.h"
 
 @class GAMultiScrollingView;
 
@@ -18,6 +19,7 @@
 @optional
 - (CGFloat)widthSpacingInsetInMultiScrollingView:(GAMultiScrollingView*)multiScrollingView;
 - (UIView*)multiScrollingView:(GAMultiScrollingView*)multiScrollingView viewForItemAtIndex:(NSInteger)index;
+- (BOOL)multiScrollingView:(GAMultiScrollingView*)multiScrollingView shouldDeleteItemAtIndex:(NSInteger)index;
 
 @end
 
@@ -30,7 +32,7 @@
 @end
 
 
-@interface GAMultiScrollingView : UIView <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface GAMultiScrollingView : UIView <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, GAMultiScrollingCollectionViewCellDelegate>
 
 @property(nonatomic, strong)   id <GAMultiScrollingViewDataSource> multiScrollingViewDataSource;
 @property(nonatomic, strong)   id <GAMultiScrollingViewDelegate>   multiScrollingViewDelegate;
