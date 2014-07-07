@@ -133,6 +133,14 @@
     return shouldDelete;
 }
 
+- (void)multiScrollingCell:(GAMultiScrollingCollectionViewCell*)cell didSelectAppearingBottomCustomViewWithIndex:(NSInteger)buttonIndex;//can be one or two
+{
+    NSIndexPath *indexPath = [myCollectionView indexPathForCell:cell];
+    if (self.multiScrollingViewDelegate && [self.multiScrollingViewDelegate respondsToSelector:@selector(multiScrollingView:didSelectAppearingBottomCustomViewWithButtonIndex:forItemAtIndex:)]) {
+        [self.multiScrollingViewDelegate multiScrollingView:self didSelectAppearingBottomCustomViewWithButtonIndex:buttonIndex forItemAtIndex:indexPath.row];
+    }
+}
+
 - (void)didEndMovingItemToBottomOfCell:(GAMultiScrollingCollectionViewCell *)cell{
 
 }

@@ -17,6 +17,8 @@
     BOOL hasCalledHideToTop;
     CGRect firstAppearingBottomCustomViewStartingRect;
     CGRect secondAppearingBottomCustomViewStartingRect;
+    
+    NSNumber *firstOrSecondBottomCustomViewEnabledNumber;
 }
 
 @end
@@ -27,6 +29,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        firstOrSecondBottomCustomViewEnabledNumber = nil;
         containerScrollView = [[ScrollViewWithScrollingDirection alloc]initWithFrame:self.bounds];
         containerScrollView.contentSize = CGSizeMake(containerScrollView.bounds.size.width, (containerScrollView.bounds.size.height) * 2);
         containerScrollView.delegate = self;
@@ -99,6 +102,8 @@
     if (bottomOffset >= self.firstAppearingBottomCustomView.bounds.size.height) {
         bottomOffset = self.firstAppearingBottomCustomView.bounds.size.height;
         self.firstAppearingBottomCustomView.frame = CGRectMake(self.firstAppearingBottomCustomView.frame.origin.x, firstAppearingBottomCustomViewStartingRect.origin.y - self.firstAppearingBottomCustomView.bounds.size.height, self.firstAppearingBottomCustomView.frame.size.width, self.firstAppearingBottomCustomView.frame.size.height);
+        firstOrSecondBottomCustomViewEnabledNumber = [NSNumber numberWithInteger:1];
+
         return;
     }
     self.firstAppearingBottomCustomView.frame = CGRectMake(self.firstAppearingBottomCustomView.frame.origin.x, firstAppearingBottomCustomViewStartingRect.origin.y-bottomOffset, self.firstAppearingBottomCustomView.frame.size.width, self.firstAppearingBottomCustomView.frame.size.height);
@@ -108,6 +113,8 @@
     bottomOffset = bottomOffset-20;
     if (bottomOffset >= self.firstAppearingBottomCustomView.bounds.size.height + self.secondAppearingBottomCustomView.bounds.size.height) {
     self.secondAppearingBottomCustomView.frame = CGRectMake(self.secondAppearingBottomCustomView.frame.origin.x, secondAppearingBottomCustomViewStartingRect.origin.y - self.firstAppearingBottomCustomView.bounds.size.height, self.secondAppearingBottomCustomView.frame.size.width, self.secondAppearingBottomCustomView.frame.size.height);
+        
+        firstOrSecondBottomCustomViewEnabledNumber = [NSNumber numberWithInteger:2];
         return;
     }
     
@@ -140,14 +147,19 @@
     }else if (!decelerate){
         [self displayItemAtDefaultPoint];
     }else{
-        /*
-        NSLog(@"content Offset start");
-        [CGGeometryHelper printPoint:containerScrollView.contentOffset];
-        NSLog(@"content Offset end");
-         */
+        if (firstOrSecondBottomCustomViewEnabledNumber.integerValue == 1) {
+            if (self.multiScrollingCollectionViewCellDelegate && [self.multiScrollingCollectionViewCellDelegate respondsToSelector:@selector(multiScrollingCell:didSelectAppearingBottomCustomViewWithIndex:)]) {
+                [self.multiScrollingCollectionViewCellDelegate multiScrollingCell:self didSelectAppearingBottomCustomViewWithIndex:1];
+            }
+        }else if (firstOrSecondBottomCustomViewEnabledNumber.integerValue == 2) {
+            if (self.multiScrollingCollectionViewCellDelegate && [self.multiScrollingCollectionViewCellDelegate respondsToSelector:@selector(multiScrollingCell:didSelectAppearingBottomCustomViewWithIndex:)]) {
+                [self.multiScrollingCollectionViewCellDelegate multiScrollingCell:self didSelectAppearingBottomCustomViewWithIndex:2];
+            }
+        }
     }
     
     [self manageAppearingViews];
+    firstOrSecondBottomCustomViewEnabledNumber = nil;
 }
 
 - (void)wentToBottom{

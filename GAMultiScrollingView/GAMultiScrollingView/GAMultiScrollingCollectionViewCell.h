@@ -14,6 +14,7 @@
 
 - (BOOL)shouldDeleteCell:(GAMultiScrollingCollectionViewCell*)cell;
 - (void)didEndMovingItemToBottomOfCell:(GAMultiScrollingCollectionViewCell*)cell;
+- (void)multiScrollingCell:(GAMultiScrollingCollectionViewCell*)cell didSelectAppearingBottomCustomViewWithIndex:(NSInteger)buttonIndex;//can be one or two
 
 @end
 

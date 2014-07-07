@@ -24,6 +24,7 @@
 
 - (UIView*)multiScrollingView:(GAMultiScrollingView*)multiScrollingView secondAppearingBottomCustomViewForItemAtIndex:(NSInteger)index;
 - (BOOL)multiScrollingView:(GAMultiScrollingView*)multiScrollingView shouldDeleteItemAtIndex:(NSInteger)index;
+- (void)multiScrollingView:(GAMultiScrollingView*)multiScrollingView didSelectAppearingBottomCustomViewWithButtonIndex:(NSInteger)buttonIndex forItemAtIndex:(NSInteger)itemIndex;
 
 @end
 

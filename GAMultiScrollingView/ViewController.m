@@ -118,4 +118,16 @@
     return secondAppearingBottomCustomViewForItemAtIndex;
 }
 
+- (void)multiScrollingView:(GAMultiScrollingView*)multiScrollingView didSelectAppearingBottomCustomViewWithButtonIndex:(NSInteger)buttonIndex forItemAtIndex:(NSInteger)itemIndex{
+    NSString *whichAppeared;
+    if (buttonIndex == 1) {
+        whichAppeared = @"First to appear";
+    }else{
+        whichAppeared = @"Second to appear";
+    }
+    
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Custom View Selection" message:[NSString stringWithFormat:@"User Selected the %@ button", whichAppeared] delegate:nil cancelButtonTitle:@"Nice!" otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
 @end
