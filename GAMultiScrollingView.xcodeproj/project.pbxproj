@@ -28,6 +28,8 @@
 		B6AF8E0A196ABAC9003728D8 /* CGGeometryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AF8E09196ABAC9003728D8 /* CGGeometryHelper.m */; };
 		B6AF8E0D196ABCFC003728D8 /* ScrollViewWithScrollingDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = B6AF8E0C196ABCFC003728D8 /* ScrollViewWithScrollingDirection.m */; };
 		B6AF8E0F196AF168003728D8 /* BSD_LICENSE_of_GAMultiScrollingView.txt in Resources */ = {isa = PBXBuildFile; fileRef = B6AF8E0E196AF168003728D8 /* BSD_LICENSE_of_GAMultiScrollingView.txt */; };
+		B6AF8E12196AF5E8003728D8 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B6AF8E10196AF5E8003728D8 /* LICENSE */; };
+		B6AF8E13196AF5E8003728D8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B6AF8E11196AF5E8003728D8 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		B6AF8E0B196ABCFC003728D8 /* ScrollViewWithScrollingDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewWithScrollingDirection.h; sourceTree = "<group>"; };
 		B6AF8E0C196ABCFC003728D8 /* ScrollViewWithScrollingDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewWithScrollingDirection.m; sourceTree = "<group>"; };
 		B6AF8E0E196AF168003728D8 /* BSD_LICENSE_of_GAMultiScrollingView.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BSD_LICENSE_of_GAMultiScrollingView.txt; sourceTree = "<group>"; };
+		B6AF8E10196AF5E8003728D8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B6AF8E11196AF5E8003728D8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,8 @@
 		B67021B21966E8F60048F529 /* GAMultiScrollingView */ = {
 			isa = PBXGroup;
 			children = (
+				B6AF8E10196AF5E8003728D8 /* LICENSE */,
+				B6AF8E11196AF5E8003728D8 /* README.md */,
 				B6AF8E0E196AF168003728D8 /* BSD_LICENSE_of_GAMultiScrollingView.txt */,
 				B67021B61966E9530048F529 /* GAMultiScrollingView.h */,
 				B67021B71966E9530048F529 /* GAMultiScrollingView.m */,
@@ -267,8 +273,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6AF8E12196AF5E8003728D8 /* LICENSE in Resources */,
 				B6AF8E0F196AF168003728D8 /* BSD_LICENSE_of_GAMultiScrollingView.txt in Resources */,
 				B67021911966E8E20048F529 /* Main_iPad.storyboard in Resources */,
+				B6AF8E13196AF5E8003728D8 /* README.md in Resources */,
 				B67021961966E8E20048F529 /* Images.xcassets in Resources */,
 				B670218E1966E8E20048F529 /* Main_iPhone.storyboard in Resources */,
 				B67021851966E8E20048F529 /* InfoPlist.strings in Resources */,
