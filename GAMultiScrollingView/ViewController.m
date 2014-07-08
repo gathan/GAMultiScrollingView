@@ -107,6 +107,21 @@
     return NO;
 }
 
+- (CGFloat)multiScrollingView:(GAMultiScrollingView*)multiScrollingView topInsetForDragToTopCustomViewsForItemAtIndex:(NSInteger)index{
+    return 4;
+}
+
+- (UIView*)multiScrollingView:(GAMultiScrollingView*)multiScrollingView dragToTopCustomViewForItemAtIndex:(NSInteger)index{
+    UIView *dragToTopCustomViewForItemAtIndex = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 150, 40)];
+    dragToTopCustomViewForItemAtIndex.backgroundColor = [UIColor colorWithRed:203/255.0f green:72/255.0f blue:56/255.0f alpha:1];
+    CGFloat imageViewWidth = 40;
+    CGFloat imageViewHeight = 40;
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(dragToTopCustomViewForItemAtIndex.bounds.size.width/2 - imageViewWidth/2 , dragToTopCustomViewForItemAtIndex.bounds.size.height/2 - imageViewHeight/2, imageViewWidth, imageViewHeight)];
+    imageView.image = [UIImage imageNamed:@"deleteIcon"];
+    [dragToTopCustomViewForItemAtIndex addSubview:imageView];
+    return dragToTopCustomViewForItemAtIndex;
+}
+
 - (CGFloat)multiScrollingView:(GAMultiScrollingView *)multiScrollingView topInsetForAppearingBottomCustomViewsForItemAtIndex:(NSInteger)index{
     return 3;
 }

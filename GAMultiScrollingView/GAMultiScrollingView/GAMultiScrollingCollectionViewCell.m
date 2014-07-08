@@ -32,6 +32,7 @@
     BOOL hasCalledHideToTop;
     CGRect firstAppearingBottomCustomViewStartingRect;
     CGRect secondAppearingBottomCustomViewStartingRect;
+    CGRect dragToTopCustomViewStartingRect;
     
     NSNumber *firstOrSecondBottomCustomViewEnabledNumber;
 }
@@ -94,6 +95,15 @@
     [containerScrollView insertSubview:secondAppearingBottomCustomView aboveSubview:self.firstAppearingBottomCustomView];
 }
 
+- (void)setDragToTopAppearingCustomView:(UIView *)dragToTopAppearingCustomView{
+    [self.dragToTopAppearingCustomView removeFromSuperview];
+    _dragToTopAppearingCustomView = dragToTopAppearingCustomView;
+    dragToTopAppearingCustomView.frame = CGRectMake(0, 0, dragToTopAppearingCustomView.frame.size.width, dragToTopAppearingCustomView.frame.size.height);
+    dragToTopAppearingCustomView.center = CGPointMake(self.customView.center.x, self.customView.frame.origin.y + self.customView.bounds.size.height-dragToTopAppearingCustomView.frame.size.height/2 - self.dragToTopCustomViewInset);
+    dragToTopCustomViewStartingRect = dragToTopAppearingCustomView.frame;
+    [containerScrollView insertSubview:dragToTopAppearingCustomView belowSubview:self.customView];
+}
+
 #pragma mark - UIScrollViewDelegate
 
 - (void)manageAppearingViews{
@@ -101,6 +111,7 @@
     if (bottomOffset>0) {
         self.firstAppearingBottomCustomView.frame = firstAppearingBottomCustomViewStartingRect;
         self.secondAppearingBottomCustomView.frame = secondAppearingBottomCustomViewStartingRect;
+        [self setFrameToDragToTopForBottomOffset:bottomOffset];
     }else{
         bottomOffset = bottomOffset * (-1);
         [self setFrameToFirstForBottomOffset:bottomOffset];
@@ -111,6 +122,15 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [containerScrollView directionScrollViewDidScroll:containerScrollView];
     [self manageAppearingViews];
+}
+
+- (void)setFrameToDragToTopForBottomOffset:(CGFloat)bottomOffset{
+    if (bottomOffset >= self.dragToTopAppearingCustomView.bounds.size.height) {
+        bottomOffset = self.dragToTopAppearingCustomView.bounds.size.height;
+        self.dragToTopAppearingCustomView.frame = CGRectMake(self.dragToTopAppearingCustomView.frame.origin.x, dragToTopCustomViewStartingRect.origin.y + self.dragToTopAppearingCustomView.bounds.size.height, self.dragToTopAppearingCustomView.frame.size.width, self.dragToTopAppearingCustomView.frame.size.height);
+        return;
+    }
+    self.dragToTopAppearingCustomView.frame = CGRectMake(self.dragToTopAppearingCustomView.frame.origin.x, dragToTopCustomViewStartingRect.origin.y+bottomOffset, self.dragToTopAppearingCustomView.frame.size.width, self.dragToTopAppearingCustomView.frame.size.height);
 }
 
 - (void)setFrameToFirstForBottomOffset:(CGFloat)bottomOffset{

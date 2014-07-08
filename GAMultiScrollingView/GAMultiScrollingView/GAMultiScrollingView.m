@@ -118,6 +118,16 @@
         }
     }
     
+    if (self.multiScrollingViewDelegate && [self.multiScrollingViewDelegate respondsToSelector:@selector(multiScrollingView:dragToTopCustomViewForItemAtIndex:)]) {
+        if (self.multiScrollingViewDelegate && [self.multiScrollingViewDelegate respondsToSelector:@selector(multiScrollingView:topInsetForDragToTopCustomViewsForItemAtIndex:)]) {
+            CGFloat topInset = [self.multiScrollingViewDelegate multiScrollingView:self topInsetForDragToTopCustomViewsForItemAtIndex:indexPath.row];
+            multiScrollingCollectionViewCell.dragToTopCustomViewInset = topInset;
+        }
+        
+        UIView *dragToTopCustomView = [self.multiScrollingViewDelegate multiScrollingView:self dragToTopCustomViewForItemAtIndex:indexPath.row];
+        multiScrollingCollectionViewCell.dragToTopAppearingCustomView = dragToTopCustomView;
+    }
+    
     return multiScrollingCollectionViewCell;
 }
 

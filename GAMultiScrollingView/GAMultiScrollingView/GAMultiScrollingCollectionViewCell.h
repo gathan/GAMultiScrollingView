@@ -41,5 +41,7 @@
 @property (nonatomic)         CGFloat topInsetForAppearingBottomCustomViews;
 @property (nonatomic, strong) UIView *firstAppearingBottomCustomView;
 @property (nonatomic, strong) UIView *secondAppearingBottomCustomView;
+@property (nonatomic, strong) UIView *dragToTopAppearingCustomView;
+@property (nonatomic) CGFloat dragToTopCustomViewInset;
 
 @end
