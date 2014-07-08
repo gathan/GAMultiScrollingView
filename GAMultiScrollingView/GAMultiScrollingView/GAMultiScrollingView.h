@@ -58,5 +58,6 @@
 
 - (void)clearData;
 - (void)reloadData;
+- (CGSize)contentSize;
 
 @end

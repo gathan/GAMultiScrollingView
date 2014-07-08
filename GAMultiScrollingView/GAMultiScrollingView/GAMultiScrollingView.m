@@ -163,6 +163,12 @@
     
 }
 
+#pragma mark - Actions
+
+- (CGSize)contentSize{
+    return myCollectionView.contentSize;
+}
+
 #pragma mark - Custom Protocol Setters
 
 - (void)setMultiScrollingViewDataSource:(id<GAMultiScrollingViewDataSource>)multiScrollingViewDataSource{
