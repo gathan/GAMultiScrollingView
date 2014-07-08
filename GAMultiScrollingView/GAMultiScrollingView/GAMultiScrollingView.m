@@ -23,7 +23,7 @@
 #import "GAMultiScrollingView.h"
 
 @interface GAMultiScrollingView(){
-
+    
     UICollectionView *myCollectionView;
     CGFloat widthForItem;
 }
@@ -36,12 +36,16 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-
+        [self prepareViewIfNeeded];
     }
     return self;
 }
 
 - (void)awakeFromNib{
+    [self prepareViewIfNeeded];
+}
+
+- (void)prepareViewIfNeeded{
     if (!myCollectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
@@ -62,13 +66,13 @@
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
 #pragma mark - UICollectionViewDelegate
 
@@ -78,7 +82,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     NSInteger numberOfItems = 0;
-
+    
     if (self.multiScrollingViewDataSource && [self.multiScrollingViewDataSource respondsToSelector:@selector(numberOfItemsInMultiScrollingView:)]) {
         numberOfItems = [self.multiScrollingViewDataSource numberOfItemsInMultiScrollingView:self];
     }
@@ -122,7 +126,7 @@
 #pragma mark - Actions
 
 - (void)clearData{
-
+    
 }
 
 - (void)reloadData{
@@ -156,7 +160,7 @@
 }
 
 - (void)didEndMovingItemToBottomOfCell:(GAMultiScrollingCollectionViewCell *)cell{
-
+    
 }
 
 #pragma mark - Custom Protocol Setters
