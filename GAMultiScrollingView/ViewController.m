@@ -81,6 +81,20 @@
 
 #pragma mark - GAMultiScrollingViewDelegate
 
+- (BOOL)multiScrollingView:(GAMultiScrollingView *)multiScrollingView shouldSelectItemAtIndex:(NSInteger)index{
+    if (index != 0 && index != 1) {
+        UIAlertView *cannotSelectAlert = [[UIAlertView alloc]initWithTitle:@"Cannot Select" message:@"For this example you can only selecte indexes:0,1" delegate:Nil cancelButtonTitle:@"Nice, thanks" otherButtonTitles:nil, nil];
+        [cannotSelectAlert show];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)multiScrollingView:(GAMultiScrollingView *)multiScrollingView didSelectItemAtIndex:(NSInteger)index{
+    UIAlertView *selectionAlert = [[UIAlertView alloc]initWithTitle:@"selected" message:[NSString stringWithFormat:@"%d",index] delegate:Nil cancelButtonTitle:@"nice" otherButtonTitles:nil, nil];
+    [selectionAlert show];
+}
+
 - (CGFloat)widthForItemInMultiScrollingView:(GAMultiScrollingView *)multiScrollingView{
     return 200;
 }

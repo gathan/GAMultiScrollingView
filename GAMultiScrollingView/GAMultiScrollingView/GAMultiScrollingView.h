@@ -44,6 +44,9 @@
 - (BOOL)multiScrollingView:(GAMultiScrollingView*)multiScrollingView shouldDeleteItemAtIndex:(NSInteger)index;
 - (void)multiScrollingView:(GAMultiScrollingView*)multiScrollingView didSelectAppearingBottomCustomViewWithButtonIndex:(NSInteger)buttonIndex forItemAtIndex:(NSInteger)itemIndex;
 
+- (BOOL)multiScrollingView:(GAMultiScrollingView*)multiScrollingView shouldSelectItemAtIndex:(NSInteger)index;
+- (void)multiScrollingView:(GAMultiScrollingView*)multiScrollingView didSelectItemAtIndex:(NSInteger)index;
+
 @end
 
 @protocol GAMultiScrollingViewDataSource<NSObject>

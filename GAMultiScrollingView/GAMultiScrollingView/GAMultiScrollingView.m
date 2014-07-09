@@ -26,6 +26,7 @@
     
     UICollectionView *myCollectionView;
     CGFloat widthForItem;
+    NSInteger lastSelectedIndex;
 }
 
 @end
@@ -51,6 +52,8 @@
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
         myCollectionView = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:flowLayout];
+        myCollectionView.allowsSelection = YES;
+        
         myCollectionView.delegate = self;
         myCollectionView.dataSource = self;
         
@@ -63,6 +66,7 @@
         
         [self addSubview:myCollectionView];
     }
+    lastSelectedIndex = -1;
 }
 
 /*
@@ -75,6 +79,12 @@
  */
 
 #pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(widthForItem, self.bounds.size.height);
@@ -96,8 +106,12 @@
     
     if (self.multiScrollingViewDelegate && [self.multiScrollingViewDelegate respondsToSelector:@selector(multiScrollingView:viewForItemAtIndex:)]) {
         UIView *viewForItemAtIndex = [self.multiScrollingViewDelegate multiScrollingView:self viewForItemAtIndex:indexPath.row];
+        UITapGestureRecognizer *tgrForCollectionViewSelection = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(cellCustomViewWasTapped:)];
+        [viewForItemAtIndex addGestureRecognizer:tgrForCollectionViewSelection];
+        viewForItemAtIndex.userInteractionEnabled = YES;
         [multiScrollingCollectionViewCell setCustomView:viewForItemAtIndex];
     }
+    
     multiScrollingCollectionViewCell.multiScrollingCollectionViewCellDelegate = self;
     
     if (self.multiScrollingViewDelegate && [self.multiScrollingViewDelegate respondsToSelector:@selector(multiScrollingView:firstAppearingBottomCustomViewForItemAtIndex:)]) {
@@ -177,6 +191,31 @@
 
 - (CGSize)contentSize{
     return myCollectionView.contentSize;
+}
+
+- (void)cellCustomViewWasTapped:(UITapGestureRecognizer*)tgr{
+    UIView *tgrView = tgr.view;
+    UIView *maybeThisViewIsTheCell = tgrView.superview;
+    while (maybeThisViewIsTheCell && ![maybeThisViewIsTheCell isKindOfClass:[GAMultiScrollingCollectionViewCell class]]){
+        maybeThisViewIsTheCell = [maybeThisViewIsTheCell superview];
+    }
+    
+    if ([maybeThisViewIsTheCell isKindOfClass:[GAMultiScrollingCollectionViewCell class]])
+    {
+        GAMultiScrollingCollectionViewCell *cell = (GAMultiScrollingCollectionViewCell*)maybeThisViewIsTheCell;
+        NSIndexPath *indexPath = [myCollectionView indexPathForCell:cell];
+        BOOL shouldSelect = YES;
+        if (self.multiScrollingViewDelegate && [self.multiScrollingViewDelegate respondsToSelector:@selector(multiScrollingView:shouldSelectItemAtIndex:)]) {
+            shouldSelect = [self.multiScrollingViewDelegate multiScrollingView:self shouldSelectItemAtIndex:indexPath.row];
+        }
+        
+        if (shouldSelect) {
+            lastSelectedIndex = indexPath.row;
+            if (self.multiScrollingViewDelegate && [self.multiScrollingViewDelegate respondsToSelector:@selector(multiScrollingView:didSelectItemAtIndex:)]) {
+                [self.multiScrollingViewDelegate multiScrollingView:self didSelectItemAtIndex:lastSelectedIndex];
+            }
+        }
+    }
 }
 
 #pragma mark - Custom Protocol Setters
