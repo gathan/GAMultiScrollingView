@@ -157,6 +157,11 @@
     [myCollectionView reloadData];
 }
 
+- (UIView*)viewForItemAtIndex:(NSInteger)index{
+    GAMultiScrollingCollectionViewCell *cell = (GAMultiScrollingCollectionViewCell*)[myCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
+    return cell.customView;
+}
+
 #pragma mark - GAMultiScrollingCollectionViewCellDelegate
 
 - (BOOL)shouldDeleteCell:(GAMultiScrollingCollectionViewCell *)cell{

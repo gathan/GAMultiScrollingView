@@ -66,5 +66,6 @@
 - (void)clearData;
 - (void)reloadData;
 - (CGSize)contentSize;
+- (UIView*)viewForItemAtIndex:(NSInteger)index;
 
 @end
