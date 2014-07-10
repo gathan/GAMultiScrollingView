@@ -166,6 +166,11 @@
     [myCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:scrollPosition animated:animated];
 }
 
+- (GAMultiScrollingCollectionViewCell*)cellForItemAtIndex:(NSInteger)index{
+    GAMultiScrollingCollectionViewCell *cell = (GAMultiScrollingCollectionViewCell*)[myCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
+    return cell;
+}
+
 #pragma mark - GAMultiScrollingCollectionViewCellDelegate
 
 - (BOOL)shouldDeleteCell:(GAMultiScrollingCollectionViewCell *)cell{
