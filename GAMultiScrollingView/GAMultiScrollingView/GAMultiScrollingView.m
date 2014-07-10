@@ -162,6 +162,10 @@
     return cell.customView;
 }
 
+- (void)scrollToItemAtIndex:(NSInteger)index atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated{
+    [myCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:scrollPosition animated:animated];
+}
+
 #pragma mark - GAMultiScrollingCollectionViewCellDelegate
 
 - (BOOL)shouldDeleteCell:(GAMultiScrollingCollectionViewCell *)cell{

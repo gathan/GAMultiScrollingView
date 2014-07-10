@@ -67,5 +67,6 @@
 - (void)reloadData;
 - (CGSize)contentSize;
 - (UIView*)viewForItemAtIndex:(NSInteger)index;
+- (void)scrollToItemAtIndex:(NSInteger)index atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated;
 
 @end
