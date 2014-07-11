@@ -113,9 +113,11 @@
         self.secondAppearingBottomCustomView.frame = secondAppearingBottomCustomViewStartingRect;
         [self setFrameToDragToTopForBottomOffset:bottomOffset];
     }else{
+        [self setFrameToDragToTopForBottomOffset:bottomOffset];
         bottomOffset = bottomOffset * (-1);
         [self setFrameToFirstForBottomOffset:bottomOffset];
         [self setFrameToSecondForBottomOffset:bottomOffset];
+        
     }
 }
 
