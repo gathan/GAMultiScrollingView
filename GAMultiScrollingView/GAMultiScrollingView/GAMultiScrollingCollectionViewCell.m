@@ -27,7 +27,7 @@
 #import "ScrollViewWithScrollingDirection.h"
 
 @interface GAMultiScrollingCollectionViewCell (){
-
+    
     ScrollViewWithScrollingDirection *containerScrollView;
     BOOL hasCalledHideToTop;
     CGRect firstAppearingBottomCustomViewStartingRect;
@@ -61,13 +61,13 @@
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
 - (void)setCustomView:(UIView *)customView{
     [self.customView removeFromSuperview];
@@ -138,7 +138,7 @@
         bottomOffset = self.firstAppearingBottomCustomView.bounds.size.height;
         self.firstAppearingBottomCustomView.frame = CGRectMake(self.firstAppearingBottomCustomView.frame.origin.x, firstAppearingBottomCustomViewStartingRect.origin.y - self.firstAppearingBottomCustomView.bounds.size.height, self.firstAppearingBottomCustomView.frame.size.width, self.firstAppearingBottomCustomView.frame.size.height);
         firstOrSecondBottomCustomViewEnabledNumber = [NSNumber numberWithInteger:1];
-
+        
         return;
     }
     self.firstAppearingBottomCustomView.frame = CGRectMake(self.firstAppearingBottomCustomView.frame.origin.x, firstAppearingBottomCustomViewStartingRect.origin.y-bottomOffset, self.firstAppearingBottomCustomView.frame.size.width, self.firstAppearingBottomCustomView.frame.size.height);
@@ -147,7 +147,7 @@
 - (void)setFrameToSecondForBottomOffset:(CGFloat)bottomOffset{
     bottomOffset = bottomOffset-20;
     if (bottomOffset >= self.firstAppearingBottomCustomView.bounds.size.height + self.secondAppearingBottomCustomView.bounds.size.height) {
-    self.secondAppearingBottomCustomView.frame = CGRectMake(self.secondAppearingBottomCustomView.frame.origin.x, secondAppearingBottomCustomViewStartingRect.origin.y - self.firstAppearingBottomCustomView.bounds.size.height, self.secondAppearingBottomCustomView.frame.size.width, self.secondAppearingBottomCustomView.frame.size.height);
+        self.secondAppearingBottomCustomView.frame = CGRectMake(self.secondAppearingBottomCustomView.frame.origin.x, secondAppearingBottomCustomViewStartingRect.origin.y - self.firstAppearingBottomCustomView.bounds.size.height, self.secondAppearingBottomCustomView.frame.size.width, self.secondAppearingBottomCustomView.frame.size.height);
         
         firstOrSecondBottomCustomViewEnabledNumber = [NSNumber numberWithInteger:2];
         return;
@@ -168,27 +168,40 @@
     [self manageAppearingViews];
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    if (!hasCalledHideToTop && [self isCustomViewRectAboutToHide]) {
+        [self performSelector:@selector(hideToTop) withObject:nil afterDelay:0.01];
+        hasCalledHideToTop = YES;
+    }else{
+        [self displayItemAtDefaultPoint];
+    }
+}
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
                   willDecelerate:(BOOL)decelerate
 {
-    BOOL isDeceleratingToHide = decelerate && containerScrollView.lastScrollDirection == ScrollDirectionDown;
-    BOOL isAcceleratingToHide = !decelerate && [self isCustomViewRectAboutToHide];
+    BOOL isDeceleratingToTop = decelerate && containerScrollView.lastScrollDirection == ScrollDirectionDown;
     
-    if (isDeceleratingToHide || isAcceleratingToHide) {
-        if (!hasCalledHideToTop) {
-            [self performSelector:@selector(hideToTop) withObject:nil afterDelay:0.01];
-            hasCalledHideToTop = YES;
-        }
-    }else if (!decelerate){
-        [self displayItemAtDefaultPoint];
-    }else{
-        if (firstOrSecondBottomCustomViewEnabledNumber.integerValue == 1) {
-            if (self.multiScrollingCollectionViewCellDelegate && [self.multiScrollingCollectionViewCellDelegate respondsToSelector:@selector(multiScrollingCell:didSelectAppearingBottomCustomViewWithIndex:)]) {
-                [self.multiScrollingCollectionViewCellDelegate multiScrollingCell:self didSelectAppearingBottomCustomViewWithIndex:1];
+    if (!isDeceleratingToTop) {
+        
+        BOOL isAcceleratingToHide = !decelerate && [self isCustomViewRectAboutToHide];
+        
+        if (isAcceleratingToHide) {
+            if (!hasCalledHideToTop) {
+                [self performSelector:@selector(hideToTop) withObject:nil afterDelay:0.01];
+                hasCalledHideToTop = YES;
             }
-        }else if (firstOrSecondBottomCustomViewEnabledNumber.integerValue == 2) {
-            if (self.multiScrollingCollectionViewCellDelegate && [self.multiScrollingCollectionViewCellDelegate respondsToSelector:@selector(multiScrollingCell:didSelectAppearingBottomCustomViewWithIndex:)]) {
-                [self.multiScrollingCollectionViewCellDelegate multiScrollingCell:self didSelectAppearingBottomCustomViewWithIndex:2];
+        }else if (!decelerate){
+            [self displayItemAtDefaultPoint];
+        }else{
+            if (firstOrSecondBottomCustomViewEnabledNumber.integerValue == 1) {
+                if (self.multiScrollingCollectionViewCellDelegate && [self.multiScrollingCollectionViewCellDelegate respondsToSelector:@selector(multiScrollingCell:didSelectAppearingBottomCustomViewWithIndex:)]) {
+                    [self.multiScrollingCollectionViewCellDelegate multiScrollingCell:self didSelectAppearingBottomCustomViewWithIndex:1];
+                }
+            }else if (firstOrSecondBottomCustomViewEnabledNumber.integerValue == 2) {
+                if (self.multiScrollingCollectionViewCellDelegate && [self.multiScrollingCollectionViewCellDelegate respondsToSelector:@selector(multiScrollingCell:didSelectAppearingBottomCustomViewWithIndex:)]) {
+                    [self.multiScrollingCollectionViewCellDelegate multiScrollingCell:self didSelectAppearingBottomCustomViewWithIndex:2];
+                }
             }
         }
     }
