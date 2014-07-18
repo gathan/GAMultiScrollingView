@@ -139,7 +139,9 @@
     if (bottomOffset >= self.firstAppearingBottomCustomView.bounds.size.height) {
         bottomOffset = self.firstAppearingBottomCustomView.bounds.size.height;
         self.firstAppearingBottomCustomView.frame = CGRectMake(self.firstAppearingBottomCustomView.frame.origin.x, firstAppearingBottomCustomViewStartingRect.origin.y - self.firstAppearingBottomCustomView.bounds.size.height, self.firstAppearingBottomCustomView.frame.size.width, self.firstAppearingBottomCustomView.frame.size.height);
-        firstOrSecondBottomCustomViewEnabledNumber = [NSNumber numberWithInteger:1];
+        if (self.firstAppearingBottomCustomView) {
+            firstOrSecondBottomCustomViewEnabledNumber = [NSNumber numberWithInteger:1];
+        }
         
         return;
     }
@@ -150,8 +152,9 @@
     bottomOffset = bottomOffset-20;
     if (bottomOffset >= self.firstAppearingBottomCustomView.bounds.size.height + self.secondAppearingBottomCustomView.bounds.size.height) {
         self.secondAppearingBottomCustomView.frame = CGRectMake(self.secondAppearingBottomCustomView.frame.origin.x, secondAppearingBottomCustomViewStartingRect.origin.y - self.firstAppearingBottomCustomView.bounds.size.height, self.secondAppearingBottomCustomView.frame.size.width, self.secondAppearingBottomCustomView.frame.size.height);
-        
-        firstOrSecondBottomCustomViewEnabledNumber = [NSNumber numberWithInteger:2];
+        if (self.secondAppearingBottomCustomView) {
+            firstOrSecondBottomCustomViewEnabledNumber = [NSNumber numberWithInteger:2];
+        }
         return;
     }
     

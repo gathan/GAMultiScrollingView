@@ -160,6 +160,9 @@
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(secondAppearingBottomCustomViewForItemAtIndex.bounds.size.width/2 - imageViewWidth/2 , secondAppearingBottomCustomViewForItemAtIndex.bounds.size.height/2 - imageViewHeight/2, imageViewWidth, imageViewHeight)];
     imageView.image = [UIImage imageNamed:@"archiveIcon"];
     [secondAppearingBottomCustomViewForItemAtIndex addSubview:imageView];
+    if (index % 2 == 1) {
+        return nil;
+    }
     return secondAppearingBottomCustomViewForItemAtIndex;
 }
 
