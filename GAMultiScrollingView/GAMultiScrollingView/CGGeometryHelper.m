@@ -31,18 +31,18 @@
 + (void)printRect:(CGRect)rect withDescription:(NSString*)description{
     NSLog(@"\n\n");
     if (description) {
-        NSLog([NSString stringWithFormat:@"Start of printing a rect named: %@", description]);
+        NSLog(@"%@", [NSString stringWithFormat:@"Start of printing a rect named: %@", description]);
     }else{
-        NSLog(@"Start of printing a rect");
+        NSLog(@"%@", @"Start of printing a rect");
     }
 
-    NSLog([NSString stringWithFormat:@"rect.x      = %f", rect.origin.x]);
-    NSLog([NSString stringWithFormat:@"rect.y      = %f", rect.origin.y]);
-    NSLog([NSString stringWithFormat:@"rect.width  = %f", rect.size.width]);
-    NSLog([NSString stringWithFormat:@"rect.height = %f", rect.size.height]);
+    NSLog(@"%@", [NSString stringWithFormat:@"rect.x      = %f", rect.origin.x]);
+    NSLog(@"%@", [NSString stringWithFormat:@"rect.y      = %f", rect.origin.y]);
+    NSLog(@"%@", [NSString stringWithFormat:@"rect.width  = %f", rect.size.width]);
+    NSLog(@"%@", [NSString stringWithFormat:@"rect.height = %f", rect.size.height]);
     
     if (description) {
-        NSLog([NSString stringWithFormat:@"End of printing a rect named: %@\n", description]);
+        NSLog(@"%@", [NSString stringWithFormat:@"End of printing a rect named: %@\n", description]);
     }else{
         NSLog(@"End of printing a rect\n");
     }
@@ -52,8 +52,8 @@
 + (void)printPoint:(CGPoint)point{
     NSLog(@"\n");
     NSLog(@"\nStart of printing a point");
-    NSLog([NSString stringWithFormat:@"point.x      = %f", point.x]);
-    NSLog([NSString stringWithFormat:@"point.y      = %f", point.y]);
+    NSLog(@"%@", [NSString stringWithFormat:@"point.x      = %f", point.x]);
+    NSLog(@"%@", [NSString stringWithFormat:@"point.y      = %f", point.y]);
     NSLog(@"End of printing a point\n");
     NSLog(@"\n");
 }
