@@ -38,6 +38,11 @@
     [self renew];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [multiScrollingView moveItemFromIndex:0 toIndex:2];
+}
+
 - (void)renew{
     [self renewAndReload:NO];
 }

@@ -69,5 +69,6 @@
 - (UIView*)viewForItemAtIndex:(NSInteger)index;
 - (void)scrollToItemAtIndex:(NSInteger)index atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated;
 - (GAMultiScrollingCollectionViewCell*)cellForItemAtIndex:(NSInteger)index;
+- (void)moveItemFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex;
 
 @end

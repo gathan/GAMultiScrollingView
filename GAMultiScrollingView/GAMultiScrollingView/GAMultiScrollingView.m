@@ -255,4 +255,8 @@
     }
 }
 
+- (void)moveItemFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex{
+    [myCollectionView moveItemAtIndexPath:[NSIndexPath indexPathForItem:fromIndex inSection:0] toIndexPath:[NSIndexPath indexPathForItem:toIndex inSection:0]];
+}
+
 @end
