@@ -145,6 +145,10 @@
         
         return;
     }
+    if (containerScrollView.lastScrollDirection == ScrollDirectionUp && bottomOffset < self.firstAppearingBottomCustomView.bounds   .size.height){
+        firstOrSecondBottomCustomViewEnabledNumber = nil;
+    }
+    
     self.firstAppearingBottomCustomView.frame = CGRectMake(self.firstAppearingBottomCustomView.frame.origin.x, firstAppearingBottomCustomViewStartingRect.origin.y-bottomOffset, self.firstAppearingBottomCustomView.frame.size.width, self.firstAppearingBottomCustomView.frame.size.height);
 }
 
